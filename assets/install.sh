@@ -106,8 +106,8 @@ if [[ -n "$(find /etc/postfix/certs -iname *.crt)" && -n "$(find /etc/postfix/ce
   export CAROOT="/etc/postfix/certs"
   /usr/local/bin/mkcert -install -ecdsa
   /usr/local/bin/mkcert -ecdsa ${MYHOSTNAME} localhost 127.0.0.1 ::1 0.0.0.0
-  KEYFILE=(ls *-key.pem | grep -v "rootCA")
-  CRTFILE=(ls *.pem | grep -v "rootCA")
+  KEYFILE=$(ls *-key.pem | grep -v "rootCA")
+  CRTFILE=$(ls *.pem | grep -v "key.pem" | grep -v "rootCA")
   mv $KEYFILE $KEYFILE.key
   mv $CRTFILE $CRTFILE.crt
 fi
